@@ -13,8 +13,10 @@ import {
     Tooltip,
     Cell,
 } from 'recharts';
+import Image from 'next/image';
 import courseData from '@/public/csuf_course_professor_merged.json';
 import StarsCanvas from '@/components/StarsCanvas';
+import AlexisChat from '@/components/AlexisChat';
 
 type CourseData = {
     'First Last': string;
@@ -34,6 +36,8 @@ type CourseData = {
 };
 
 export default function DashboardPage() {
+    const [chatOpen, setChatOpen] = useState(false);
+
     const searchParams = useSearchParams();
     const router = useRouter();
     const course = searchParams.get('course') || '';
@@ -65,7 +69,25 @@ export default function DashboardPage() {
 
     const total = gradeData.reduce((sum, g) => sum + g.count, 0);
 
-    if (!data) return <div className="text-white p-8">Course data not found.</div>;
+    if (!data)
+        return (
+            <>
+                <StarsCanvas show={true} />
+                <div
+                    className={
+                        'absolute inset-0 z-50 flex items-center justify-center transition-opacity duration-1000'
+                    }
+                >
+                    <Image
+                        src="/loading.gif"
+                        alt="Intro Splash"
+                        width={150}
+                        height={150}
+                        unoptimized
+                    />
+                </div>
+            </>
+        );
 
     return (
         <div className="min-h-screen  text-white px-6 py-10 relative">
@@ -436,11 +458,17 @@ export default function DashboardPage() {
             </div>
 
             {/* Chatbot Button */}
-            <div className="fixed bottom-8 right-8">
-                <button className="bg-gradient-to-r from-orange-500 to-yellow-400 px-6 py-3 rounded-full font-semibold shadow-lg text-black hover:opacity-90">
+            <div className="fixed bottom-8 right-8 z-50">
+                <button
+                    onClick={() => setChatOpen(true)}
+                    className="cursor-pointer bg-gradient-to-r from-orange-500 to-yellow-400 px-6 py-3 rounded-full font-semibold shadow-lg text-black hover:opacity-90"
+                >
                     Chat with Alexis
                 </button>
             </div>
+
+            {/* Conditionally show Alexis Chat */}
+            {chatOpen && <AlexisChat onClose={() => setChatOpen(false)} />}
         </div>
     );
 }
