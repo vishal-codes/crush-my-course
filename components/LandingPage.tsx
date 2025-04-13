@@ -27,54 +27,58 @@ export default function LandingPage() {
                 <source src="blackhole.webm" type="video/webm" />
             </video>
 
-            <section className="w-full min-h-screen flex flex-col md:flex-row items-center justify-center relative overflow-hidden z-10 px-4 sm:px-6 md:px-12">
-                {/* Left side - Illustration */}
-                <div className="w-full md:w-1/2 flex justify-center items-center p-6">
-                    <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md aspect-square">
-                        <Image
-                            src="/logo.svg?height=400&width=400"
-                            alt="Students selecting courses"
-                            width={400}
-                            height={400}
-                            className="object-contain"
-                            priority
-                        />
-                    </div>
-                </div>
-                <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start p-6 space-y-6 text-center md:text-left">
-                    <div className="flex items-center gap-3 justify-center md:justify-start">
-                        <FaGraduationCap className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 text-[#FF7A21]" />
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold shimmer-text">
-                            CrushMyCourse
-                        </h1>
-                    </div>
+            <section className="w-full min-h-screen flex flex-col md:flex-row items-center justify-between gap-16 md:gap-24 px-6 sm:px-10 md:px-20 py-12 relative z-10 overflow-hidden">
+  {/* Left side - Laptop Image */}
+  <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center">
+    <div className="relative w-[360px] sm:w-[420px] md:w-[500px] lg:w-[580px] xl:w-[620px]">
+      <Image
+        src="/logo1.png"
+        alt="Course Dashboard Mockup"
+        width={600}
+        height={600}
+        className="object-contain w-full h-auto"
+        priority
+      />
+    </div>
+  </div>
 
-                    <div className="h-10">
-                        <TypewriterEffect text="Titan up. Pick smart. Slay hard." />
-                    </div>
+  {/* Right side - Headline and Buttons */}
+  <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start text-center md:text-left space-y-6">
+    <div className="flex items-center gap-4">
+    <FaGraduationCap
+  className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 text-[#FF7A21] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,140,0,0.8)]"
+/>
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold shimmer-text">
+        CrushMyCourse
+      </h1>
+    </div>
 
-                    <p className="text-[#D1D5DB] text-base sm:text-lg max-w-md">
-                        The ultimate course selection platform for Cal State Fullerton
-                        Titans. Find, compare, and register for your perfect classes.
-                    </p>
+    <div className="h-10">
+      <TypewriterEffect text="Titan up. Pick smart. Slay hard." />
+    </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 mt-4">
-                        <button
-                            onClick={() => router.push('/details')}
-                            className="w-full sm:w-auto cursor-pointer relative px-6 py-3 bg-gradient-to-r from-[#FF7A21] to-[#f8924d] text-white font-bold rounded-full hover:opacity-90 transition-all animate-pulse-border"
-                        >
-                            Get Started
-                        </button>
+    <p className="text-[#D1D5DB] text-base sm:text-lg max-w-md">
+      The ultimate course selection platform for Cal State Fullerton
+      Titans. Find, compare, and register for your perfect classes.
+    </p>
 
-                        <button
-                            onClick={scrollToFeatures}
-                            className="w-full sm:w-auto px-6 py-3 bg-[#0000004D] backdrop-blur-sm border border-[#FFFFFF1A] text-white font-bold rounded-full hover:bg-[#00000066] transition-all hover:border-[#FFFFFF4D]"
-                        >
-                            Learn More
-                        </button>
-                    </div>
-                </div>
-            </section>
+    <div className="flex flex-col sm:flex-row gap-4 mt-4">
+      <button
+        onClick={() => router.push('/details')}
+        className="w-full sm:w-auto cursor-pointer relative px-6 py-3 bg-gradient-to-r from-[#FF7A21] to-[#f8924d] text-white font-bold rounded-full hover:opacity-90 transition-all animate-pulse-border"
+      >
+        Get Started
+      </button>
+
+      <button
+        onClick={scrollToFeatures}
+        className="w-full sm:w-auto px-6 py-3 bg-[#0000004D] backdrop-blur-sm border border-[#FFFFFF1A] text-white font-bold rounded-full hover:bg-[#00000066] transition-all hover:border-[#FFFFFF4D]"
+      >
+        Learn More
+      </button>
+    </div>
+  </div>
+</section>
 
             <section
                 ref={featuresRef}
