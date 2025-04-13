@@ -40,7 +40,7 @@ export default function Home() {
                     alt="Intro Splash"
                     width={150}
                     height={150}
-                    className=""
+                    unoptimized
                 />
             </div>
             {showLanding && (
