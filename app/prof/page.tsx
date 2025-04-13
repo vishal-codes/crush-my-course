@@ -57,13 +57,13 @@ export default function ProfPage() {
 
     useEffect(() => {
         if (sortType === 'easy') {
-          setSorted([...professors].sort((a, b) => b['Avg GPA'] - a['Avg GPA'])); // Higher GPA = easier
+            setSorted([...professors].sort((a, b) => b['Avg GPA'] - a['Avg GPA'])); // Higher GPA = easier
         } else if (sortType === 'hard') {
-          setSorted([...professors].sort((a, b) => a['Avg GPA'] - b['Avg GPA'])); // Lower GPA = harder
+            setSorted([...professors].sort((a, b) => a['Avg GPA'] - b['Avg GPA'])); // Lower GPA = harder
         } else {
-          setSorted(professors);
+            setSorted(professors);
         }
-      }, [sortType, professors]);
+    }, [sortType, professors]);
 
     return (
         <>
@@ -81,25 +81,25 @@ export default function ProfPage() {
                 </h2>
 
                 <div className="flex flex-wrap gap-4 mb-8">
-  <Button
-    className="bg-green-600 hover:bg-green-700 text-white rounded-2xl"
-    onClick={() => setSortType('easy')}
-  >
-    😊 Sort by Easy
-  </Button>
-  <Button
-    className="bg-red-600 hover:bg-red-700 text-white rounded-2xl"
-    onClick={() => setSortType('hard')}
-  >
-    🔥 Sort by Hard
-  </Button>
-  <Button
-    className="bg-gray-700 hover:bg-gray-600 text-white"
-    onClick={() => setSortType(null)}
-  >
-    🌀 Reset
-  </Button>
-</div>
+                    <Button
+                        className="bg-green-600 hover:bg-green-700 text-white rounded-2xl"
+                        onClick={() => setSortType('easy')}
+                    >
+                        😊 Sort by Easy
+                    </Button>
+                    <Button
+                        className="bg-red-600 hover:bg-red-700 text-white rounded-2xl"
+                        onClick={() => setSortType('hard')}
+                    >
+                        🔥 Sort by Hard
+                    </Button>
+                    <Button
+                        className="bg-gray-700 hover:bg-gray-600 text-white"
+                        onClick={() => setSortType(null)}
+                    >
+                        🌀 Reset
+                    </Button>
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {sorted.map((prof, idx) => {
@@ -108,103 +108,131 @@ export default function ProfPage() {
                             name
                         )}`;
                         return (
-<Card
-  key={idx}
-  className="cursor-pointer aspect-square transition-all duration-300 hover:scale-105"
-  style={{
-    background: 'linear-gradient(to top, rgba(255,255,255,0.06), rgba(0,0,0,0.9))',
-    boxShadow: '0 0 0 rgba(255, 140, 0, 0)',
-    borderRadius: '0.75rem',
-    border: '1px solid #333',
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 140, 0, 0.3)';
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.boxShadow = '0 0 0 rgba(255, 140, 0, 0)';
-  }}
-  onClick={() =>
-    router.push(
-      `/dashboard?dept=${encodeURIComponent(dept!)}&course=${encodeURIComponent(
-        course!
-      )}&prof=${encodeURIComponent(name)}`
-    )
-  }
->
-<CardContent className="group p-4 flex flex-col items-center justify-center h-full gap-3 text-center">
-  {/* Avatar */}
-  <img
-    src={imgURL}
-    alt={name}
-    className="w-20 h-20 rounded-full border border-orange-400 shadow"
-  />
+                            <Card
+                                key={idx}
+                                className="cursor-pointer aspect-square transition-all duration-300 hover:scale-105"
+                                style={{
+                                    background:
+                                        'linear-gradient(to top, rgba(255,255,255,0.06), rgba(0,0,0,0.9))',
+                                    boxShadow: '0 0 0 rgba(255, 140, 0, 0)',
+                                    borderRadius: '0.75rem',
+                                    border: '1px solid #333',
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.boxShadow =
+                                        '0 0 30px rgba(255, 140, 0, 0.3)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.boxShadow =
+                                        '0 0 0 rgba(255, 140, 0, 0)';
+                                }}
+                                onClick={() =>
+                                    router.push(
+                                        `/dashboard?dept=${encodeURIComponent(
+                                            dept!
+                                        )}&course=${encodeURIComponent(
+                                            course!
+                                        )}&prof=${encodeURIComponent(name)}`
+                                    )
+                                }
+                            >
+                                <CardContent className="group p-4 flex flex-col items-center justify-center h-full gap-3 text-center">
+                                    {/* Avatar */}
+                                    <img
+                                        src={imgURL}
+                                        alt={name}
+                                        className="w-20 h-20 rounded-full border border-orange-400 shadow"
+                                    />
 
-  {/* Name */}
-  <h3 className="text-lg font-semibold text-orange-400">{name}</h3>
-<div className="w-20 h-[4px] bg-orange-400 rounded-full mt-2 mb-3 z-10 relative shadow-[0_0_10px_rgba(255,165,0,0.6)]"></div>
+                                    {/* Name */}
+                                    <h3 className="text-lg font-semibold text-orange-400">
+                                        {name}
+                                    </h3>
+                                    <div className="w-20 h-[4px] bg-orange-400 rounded-full mt-2 mb-3 z-10 relative shadow-[0_0_10px_rgba(255,165,0,0.6)]"></div>
 
+                                    {/* Difficulty Meter */}
+                                    <div className="flex flex-col items-center gap-1 mt-2">
+                                        <div className="relative w-20 h-20">
+                                            <svg
+                                                className="w-full h-full rotate-[-90deg]"
+                                                viewBox="0 0 36 36"
+                                            >
+                                                <circle
+                                                    cx="18"
+                                                    cy="18"
+                                                    r="16"
+                                                    stroke="#333"
+                                                    strokeWidth="3"
+                                                    fill="none"
+                                                />
+                                                <circle
+                                                    cx="18"
+                                                    cy="18"
+                                                    r="16"
+                                                    stroke="#f97316"
+                                                    strokeWidth="3"
+                                                    fill="none"
+                                                    strokeDasharray={`${
+                                                        (prof.Difficulty ?? 2) * 20
+                                                    }, 100`}
+                                                    strokeLinecap="round"
+                                                />
+                                            </svg>
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-orange-400 font-bold text-xl">
+                                                {(prof.Difficulty ?? 2).toFixed(1)}
+                                                <span className="text-xs text-gray-400">
+                                                    / 5
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            Difficulty
+                                        </p>
+                                    </div>
 
+                                    {/* GPA Bar */}
+                                    <div className="w-full mt-4">
+                                        <p className="text-sm text-gray-400 mb-1">
+                                            Average GPA
+                                        </p>
 
-  {/* Difficulty Meter */}
-  <div className="flex flex-col items-center gap-1 mt-2">
-    <div className="relative w-20 h-20">
-      <svg className="w-full h-full rotate-[-90deg]" viewBox="0 0 36 36">
-        <circle cx="18" cy="18" r="16" stroke="#333" strokeWidth="3" fill="none" />
-        <circle
-          cx="18"
-          cy="18"
-          r="16"
-          stroke="#f97316"
-          strokeWidth="3"
-          fill="none"
-          strokeDasharray={`${(prof.Difficulty ?? 2) * 20}, 100`}
-          strokeLinecap="round"
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-orange-400 font-bold text-xl">
-        {(prof.Difficulty ?? 2).toFixed(1)}
-        <span className="text-xs text-gray-400">/ 5</span>
-      </div>
-    </div>
-    <p className="text-sm text-gray-400 mt-1">Difficulty</p>
-  </div>
+                                        {/* GPA Bar */}
+                                        <div className="relative bg-gray-700 rounded-full h-3">
+                                            {/* Filled Bar */}
+                                            <div
+                                                className="bg-orange-400 h-3 rounded-full transition-all duration-500"
+                                                style={{
+                                                    width: `${
+                                                        (prof['Avg GPA'] / 4.0) * 100
+                                                    }%`,
+                                                }}
+                                            ></div>
 
-  {/* GPA Bar */}
-  <div className="w-full mt-4">
-  <p className="text-sm text-gray-400 mb-1">Average GPA</p>
+                                            {/* GPA Dot with tooltip */}
+                                            <div
+                                                className="absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white border-2 border-orange-400 rounded-full shadow cursor-help"
+                                                title={`Avg GPA: ${prof[
+                                                    'Avg GPA'
+                                                ].toFixed(2)}`}
+                                                style={{
+                                                    left: `calc(${
+                                                        (prof['Avg GPA'] / 4.0) * 100
+                                                    }% - 0.5rem)`,
+                                                    zIndex: 10,
+                                                }}
+                                            ></div>
+                                        </div>
 
-  {/* GPA Bar */}
-  <div className="relative bg-gray-700 rounded-full h-3">
-    {/* Filled Bar */}
-    <div
-      className="bg-orange-400 h-3 rounded-full transition-all duration-500"
-      style={{ width: `${(prof['Avg GPA'] / 4.0) * 100}%` }}
-    ></div>
-
-    {/* GPA Dot with tooltip */}
-    <div
-      className="absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white border-2 border-orange-400 rounded-full shadow cursor-help"
-      title={`Avg GPA: ${prof['Avg GPA'].toFixed(2)}`}
-      style={{
-        left: `calc(${(prof['Avg GPA'] / 4.0) * 100}% - 0.5rem)`,
-        zIndex: 10,
-      }}
-    ></div>
-  </div>
-
-  {/* Number Labels */}
-  <div className="flex justify-between text-xs text-gray-400 mt-1 px-1">
-    <span>0</span>
-    <span>1</span>
-    <span>2</span>
-    <span>3</span>
-    <span>4</span>
-  </div>
-</div>
-
-
-</CardContent>
-
+                                        {/* Number Labels */}
+                                        <div className="flex justify-between text-xs text-gray-400 mt-1 px-1">
+                                            <span>0</span>
+                                            <span>1</span>
+                                            <span>2</span>
+                                            <span>3</span>
+                                            <span>4</span>
+                                        </div>
+                                    </div>
+                                </CardContent>
                             </Card>
                         );
                     })}

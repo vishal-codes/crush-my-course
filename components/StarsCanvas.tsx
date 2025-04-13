@@ -4,7 +4,7 @@ import React, { useState, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import { TextureLoader } from 'three';
-// @ts-ignore
+// @ts-expect-erro
 import * as random from 'maath/random/dist/maath-random.esm';
 
 const getRandomPosition = (radius: number) => {
