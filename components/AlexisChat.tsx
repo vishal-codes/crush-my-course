@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { IoCloseCircleOutline } from 'react-icons/io5';
-import { FiSend } from 'react-icons/fi';
+import { BsRocketTakeoffFill } from 'react-icons/bs';
 
 type Message = {
     sender: 'user' | 'bot';
@@ -68,7 +68,7 @@ export default function AlexisChat({ onClose }: { onClose: () => void }) {
     return (
         <div
             ref={chatRef}
-            className="fixed bottom-24 right-8 w-[320px] h-[500px] rounded-xl shadow-lg z-50 flex flex-col animate-fade-in"
+            className="fixed bottom-24 right-8 w-[300px] sm:w-[350px] h-[500px] rounded-xl shadow-lg z-50 flex flex-col animate-fade-in"
             style={{ backgroundColor: '#111827', color: '#FFFFFF' }}
         >
             {/* Header */}
@@ -105,7 +105,7 @@ export default function AlexisChat({ onClose }: { onClose: () => void }) {
 
             {/* Input */}
             <div
-                className="p-3 border-t"
+                className="p-3 border-t rounded-b-xl"
                 style={{
                     backgroundColor: '#0f172a',
                     borderTopColor: '#1A1A1A',
@@ -131,9 +131,9 @@ export default function AlexisChat({ onClose }: { onClose: () => void }) {
                     />
                     <button
                         onClick={handleSend}
-                        className="p-2 rounded-full bg-[#f97316] hover:opacity-90 transition"
+                        className="cursor-pointer p-2 rounded-full bg-[#f97316] hover:opacity-90 transition"
                     >
-                        <FiSend className="text-white w-5 h-5" />
+                        <BsRocketTakeoffFill className="text-white w-5 h-5" />
                     </button>
                 </div>
             </div>

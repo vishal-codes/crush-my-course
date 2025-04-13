@@ -17,6 +17,7 @@ import Image from 'next/image';
 import courseData from '@/public/csuf_course_professor_merged.json';
 import StarsCanvas from '@/components/StarsCanvas';
 import AlexisChat from '@/components/AlexisChat';
+import { RiChatAiFill } from 'react-icons/ri';
 
 type CourseData = {
     'First Last': string;
@@ -463,7 +464,9 @@ export default function DashboardPage() {
                     onClick={() => setChatOpen(true)}
                     className="cursor-pointer bg-gradient-to-r from-orange-500 to-yellow-400 px-6 py-3 rounded-full font-semibold shadow-lg text-black hover:opacity-90"
                 >
-                    Chat with Alexis
+                    <span className="flex items-center gap-2">
+                        <RiChatAiFill className="text-2xl text-#0f0052" /> {''} Ask Alexis
+                    </span>
                 </button>
             </div>
 

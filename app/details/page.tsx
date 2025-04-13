@@ -124,7 +124,7 @@ export default function CourseDetailsForm() {
                             {/* Submit */}
                             <Button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-orange-400 via-orange-500 to-yellow-500 text-white text-md font-semibold hover:opacity-90"
+                                className="cursor-pointer w-full bg-gradient-to-r from-orange-400 via-orange-500 to-yellow-500 text-white text-md font-semibold hover:opacity-90"
                             >
                                 Search Professors
                             </Button>
