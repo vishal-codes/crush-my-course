@@ -5,7 +5,11 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
-import StarsCanvas from '@/components/StarsCanvas';
+import dynamic from 'next/dynamic';
+
+const StarsCanvas = dynamic(() => import('@/components/StarsCanvas'), {
+    ssr: false,
+});
 
 interface ProfessorData {
     Course: string;

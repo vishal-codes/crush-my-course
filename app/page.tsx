@@ -3,7 +3,11 @@
 import { useEffect, useState } from 'react';
 import LandingPage from '@/components/LandingPage';
 import Image from 'next/image';
-import StarsCanvas from '@/components/StarsCanvas';
+import dynamic from 'next/dynamic';
+
+const StarsCanvas = dynamic(() => import('@/components/StarsCanvas'), {
+    ssr: false,
+});
 
 export default function Home() {
     const [showSplash, setShowSplash] = useState(true);

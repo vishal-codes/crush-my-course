@@ -41,7 +41,7 @@ export default function AlexisChat({ onClose }: { onClose: () => void }) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                session_id: 'test_user',
+                // session_id: 'test_user',
                 question: input,
             }),
         })

@@ -7,7 +7,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
-import StarsCanvas from '@/components/StarsCanvas';
+import dynamic from 'next/dynamic';
+
+const StarsCanvas = dynamic(() => import('@/components/StarsCanvas'), {
+    ssr: false,
+});
 
 export default function CourseDetailsForm() {
     const router = useRouter();

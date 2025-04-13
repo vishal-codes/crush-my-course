@@ -14,8 +14,8 @@ import {
     Cell,
 } from 'recharts';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import courseData from '@/public/csuf_course_professor_merged.json';
-import StarsCanvas from '@/components/StarsCanvas';
 import AlexisChat from '@/components/AlexisChat';
 import { RiChatAiFill } from 'react-icons/ri';
 
@@ -35,6 +35,10 @@ type CourseData = {
     D: number;
     F: number;
 };
+
+const StarsCanvas = dynamic(() => import('@/components/StarsCanvas'), {
+    ssr: false,
+});
 
 export default function DashboardPage() {
     const [chatOpen, setChatOpen] = useState(false);
