@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
 import {
@@ -40,7 +40,7 @@ const StarsCanvas = dynamic(() => import('@/components/StarsCanvas'), {
     ssr: false,
 });
 
-export default function DashboardPage() {
+function DashboardPageContent() {
     const [chatOpen, setChatOpen] = useState(false);
 
     const searchParams = useSearchParams();
@@ -477,5 +477,32 @@ export default function DashboardPage() {
             {/* Conditionally show Alexis Chat */}
             {chatOpen && <AlexisChat onClose={() => setChatOpen(false)} />}
         </div>
+    );
+}
+
+export default function DashboardPage() {
+    return (
+        <Suspense
+            fallback={
+                <>
+                    <StarsCanvas show={true} />
+                    <div
+                        className={
+                            'absolute inset-0 z-50 flex items-center justify-center transition-opacity duration-1000'
+                        }
+                    >
+                        <Image
+                            src="/loading.gif"
+                            alt="Intro Splash"
+                            width={150}
+                            height={150}
+                            unoptimized
+                        />
+                    </div>
+                </>
+            }
+        >
+            <DashboardPageContent />
+        </Suspense>
     );
 }
