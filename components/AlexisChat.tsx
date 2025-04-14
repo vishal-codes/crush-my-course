@@ -32,7 +32,11 @@ export default function AlexisChat({ onClose }: { onClose: () => void }) {
         if (!input.trim()) return;
 
         const userMsg = { sender: 'user', text: input.trim() };
-        setMessages((prev) => [...prev, userMsg, { sender: 'bot', text: 'Thinking...' }]);
+        setMessages((prev) => [
+            ...prev,
+            userMsg as Message,
+            { sender: 'bot', text: 'Thinking...' } as Message,
+        ]);
         setInput('');
 
         await fetch(url, {

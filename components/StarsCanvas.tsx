@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState, useRef, Suspense } from 'react';
+import React, { useState, useRef, Suspense, JSX } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import { TextureLoader } from 'three';
+import * as THREE from 'three';
 import type { Points as PointsType } from 'three';
 // @ts-expect-error - maath doesn't have types
 import * as random from 'maath/random/dist/maath-random.esm';
