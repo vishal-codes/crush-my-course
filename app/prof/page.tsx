@@ -17,7 +17,8 @@ interface ProfessorData {
     Difficulty: number | null;
     'Course Name': string;
     Department: string;
-    [key: string]: any;
+    'Avg GPA': number;
+    [key: string]: unknown;
 }
 
 export default function ProfPage() {

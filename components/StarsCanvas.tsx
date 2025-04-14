@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState, useRef, Suspense } from 'react';
+import React, { useState, useRef, Suspense, MutableRefObject } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import { TextureLoader } from 'three';
-// @ts-expect-erro
+import type { Points as PointsType } from 'three';
+// @ts-expect-error - maath doesn't have types
 import * as random from 'maath/random/dist/maath-random.esm';
 
-const getRandomPosition = (radius: number) => {
+const getRandomPosition = (radius: number): [number, number, number] => {
     return [
         (Math.random() - 0.5) * radius,
         (Math.random() - 0.5) * radius,
@@ -19,7 +20,7 @@ const generateRandomPositions = (
     count: number,
     radius: number,
     center: [number, number, number] = [0, 0, 0]
-) => {
+): Float32Array => {
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
         const [x, y, z] = random.inSphere(new Float32Array(3), { radius });
@@ -30,40 +31,41 @@ const generateRandomPositions = (
     return positions;
 };
 
-const StarBackground = (props: any) => {
-    const ref1: any = useRef();
-    const ref2: any = useRef();
-    const ref3: any = useRef();
+const StarBackground = (props: JSX.IntrinsicElements['group']) => {
+    const ref1 = useRef<PointsType>(null);
+    const ref2 = useRef<PointsType>(null);
 
     const [cluster1] = useState(() => generateRandomPositions(500, 1));
     const [cluster2] = useState(() => generateRandomPositions(250, 1.5, [2, 2, 0]));
 
-    console.log(cluster1.length, cluster2.length);
-
-    useFrame((state, delta) => {
-        ref1.current.rotation.x -= delta / 10;
-        ref1.current.rotation.y -= delta / 15;
-        ref2.current.rotation.x -= delta / 12;
-        ref2.current.rotation.y -= delta / 18;
+    useFrame((_, delta) => {
+        if (ref1.current) {
+            ref1.current.rotation.x -= delta / 10;
+            ref1.current.rotation.y -= delta / 15;
+        }
+        if (ref2.current) {
+            ref2.current.rotation.x -= delta / 12;
+            ref2.current.rotation.y -= delta / 18;
+        }
     });
 
     return (
-        <group rotation={[0, 0, Math.PI / 4]}>
-            <Points ref={ref1} positions={cluster1} stride={3} frustumCulled {...props}>
+        <group rotation={[0, 0, Math.PI / 4]} {...props}>
+            <Points ref={ref1} positions={cluster1} stride={3} frustumCulled>
                 <PointMaterial
                     transparent
-                    color="#fff"
+                    color="#ffffff"
                     size={0.003}
-                    sizeAttenuation={true}
+                    sizeAttenuation
                     depthWrite={false}
                 />
             </Points>
-            <Points ref={ref2} positions={cluster2} stride={3} frustumCulled {...props}>
+            <Points ref={ref2} positions={cluster2} stride={3} frustumCulled>
                 <PointMaterial
                     transparent
-                    color="#fff"
+                    color="#ffffff"
                     size={0.002}
-                    sizeAttenuation={true}
+                    sizeAttenuation
                     depthWrite={false}
                 />
             </Points>
@@ -77,13 +79,13 @@ const NebulaBackground = () => {
     const nebulaInstances = useRef(
         new Array(3).fill(null).map(() => ({
             position: getRandomPosition(5),
-            scale: Math.random() * 0.15 + 0.1, // moderate, balanced scale
+            scale: Math.random() * 0.15 + 0.1,
             speedX: (Math.random() - 0.5) * 0.002,
             speedY: (Math.random() - 0.5) * 0.002,
         }))
     );
 
-    const meshRefs = useRef<(THREE.Mesh | null)[]>([]);
+    const meshRefs = useRef<Array<THREE.Mesh | null>>([]);
 
     useFrame(() => {
         nebulaInstances.current.forEach((nebula, i) => {
