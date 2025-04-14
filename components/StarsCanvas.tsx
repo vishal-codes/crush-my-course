@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, Suspense, MutableRefObject } from 'react';
+import React, { useState, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import { TextureLoader } from 'three';
