@@ -20,7 +20,7 @@ Visit [Crush My Course](https://crush-my-course.vercel.app/) to get insights reg
 
 ```bash
 git clone https://github.com/vishal-codes/crush-my-course.git
-cd crush-my-course
+cd crush-my-course/client/
 ```
 
 2. Install dependencies:
