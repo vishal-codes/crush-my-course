@@ -11,7 +11,7 @@ type Message = {
 
 export default function AlexisChat({ onClose }: { onClose: () => void }) {
     const host = process.env.NEXT_PUBLIC_SERVER_URL;
-    const url = host + '/chat';
+    const url = host + '/ask';
 
     const [messages, setMessages] = useState<Message[]>([
         {
@@ -54,7 +54,7 @@ export default function AlexisChat({ onClose }: { onClose: () => void }) {
                 setMessages((prev) =>
                     prev.slice(0, -1).concat({
                         sender: 'bot',
-                        text: data.response,
+                        text: data.answer,
                     })
                 );
             })
