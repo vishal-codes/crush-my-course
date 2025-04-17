@@ -5,6 +5,7 @@ The ultimate course selection platform for Cal State Fullerton Titans. Find, com
 ## 🚀 Try It Now!
 
 Visit [Crush My Course](https://crush-my-course.vercel.app/) to get insights regarding courses, professors and clear your doubts using Alexis AI chat bot.
+Check out the Intro video on [Youtube](https://youtu.be/K8aPhdZgYQU).
 
 ## ✨ Features
 
